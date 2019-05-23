@@ -34,7 +34,7 @@ namespace Gamemo
             var gameListResponse = SteamWebAPI.General().IPlayerService().GetOwnedGames(User).GetResponse();
             List<GetOwnedGamesResponseGame> gameList = gameListResponse.Data.Games;
             foreach (GetOwnedGamesResponseGame g in gameList) {
-                string gameName = AppList.Find(item => item.AppID == g.AppID).Name;
+                string gameName = AppList.Find(x => x.AppID == g.AppID).Name;
                 if (gameName != null) {
                     gamesList.Add(new Game(g.AppID, gameName));
                 }
@@ -67,7 +67,6 @@ namespace Gamemo
                         } else if (reader.Name == "achievement") {
                             while (reader.MoveToNextAttribute()) { // Read the attributes.
                                 if (reader.Name == "closed" && reader.Value == "0") {
-                                    Console.WriteLine("lock achiev");
                                     readingAchievement = true;
                                     achievement = new Achievement();
                                 }

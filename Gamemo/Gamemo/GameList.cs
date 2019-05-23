@@ -17,34 +17,15 @@ namespace Gamemo
         }
 
         public void RemoveGame(string name) {
-            Game g = GetGame(name);
-            if (g != null) {
-                games.Remove(GetGame(name));
-            }
+            games.RemoveAll(x => x.Name == name);
         }
 
         public void UpdateGameMemo(string name, string newMemo) {
-            Game g = GetGame(name);
-            if (g != null) {
-                games.Remove(g);
-                games.Add(new Game(name, newMemo));
-            }
+            games.Find(x => x.Name == name).Memo = newMemo;
         }
 
         public string GetGameMemo(string name) {
-            Game g = GetGame(name);
-            if (g != null) {
-                return g.Memo;
-            }
-            return null;
-        }
-
-        private Game GetGame(string name) {
-            foreach (Game g in games) {
-                if (g.Name == name)
-                    return g;
-            }
-            return null;
+            return games.Find(x => x.Name == name).Memo;
         }
 
         public List<string> GetAllGameNames() {

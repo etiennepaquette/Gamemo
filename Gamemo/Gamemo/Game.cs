@@ -8,6 +8,7 @@ namespace Gamemo
 {
     public class Game
     {
+        public bool SteamGame { get; set; }
         public int AppID { get; set; }
         public string Name { get; set; }
         public string Memo { get; set; }
@@ -16,16 +17,13 @@ namespace Gamemo
 
         public Game(string name) {
             Name = name;
-        }
-
-        public Game(string name, string memo) {
-            Name = name;
-            Memo = memo;
+            SteamGame = false;
         }
 
         public Game(int appID, string name) {
             AppID = appID;
             Name = name;
+            SteamGame = true;
         }
     }
 }
