@@ -8,27 +8,27 @@ using Newtonsoft.Json;
 
 namespace Gamemo
 {
-    public class GameList
+    public static class GameList
     {
-        List<Game> games = new List<Game>();
+        public static List<Game> games = new List<Game>();
 
-        public void AddGame(string name) {
+        public static void AddGame(string name) {
             games.Add(new Game(name));
         }
 
-        public void RemoveGame(string name) {
+        public static void RemoveGame(string name) {
             games.RemoveAll(x => x.Name == name);
         }
 
-        public void UpdateGameMemo(string name, string newMemo) {
+        public static void UpdateGameMemo(string name, string newMemo) {
             games.Find(x => x.Name == name).Memo = newMemo;
         }
 
-        public string GetGameMemo(string name) {
+        public static string GetGameMemo(string name) {
             return games.Find(x => x.Name == name).Memo;
         }
 
-        public List<string> GetAllGameNames() {
+        public static List<string> GetAllGameNames() {
             List<string> names = new List<string>();
             foreach (Game g in games) {
                 names.Add(g.Name);
@@ -36,11 +36,11 @@ namespace Gamemo
             return names;
         }
 
-        public void Save(string fileName) {
+        public static void Save(string fileName) {
             File.WriteAllText(fileName, JsonConvert.SerializeObject(games, Formatting.Indented));
         }
 
-        public void Load(string fileName) {
+        public static void Load(string fileName) {
             games = JsonConvert.DeserializeObject<List<Game>>(File.ReadAllText(fileName));
         }
     }

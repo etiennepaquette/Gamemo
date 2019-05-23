@@ -14,7 +14,6 @@ namespace Gamemo
 {
     public partial class FormMain : Form
     {
-        GameList gameList = new GameList();
         string fileName = String.Format(@"{0}\gameList.json", Application.StartupPath);
 
         public FormMain()
@@ -29,18 +28,18 @@ namespace Gamemo
         }
 
         public void AddGame(string name) {
-            gameList.AddGame(name);
+            GameList.AddGame(name);
             UpdateGameList();
         }
 
         private void LoadGameList() {
-            gameList.Load(fileName);
+            GameList.Load(fileName);
             UpdateGameList();
         }
 
         private void UpdateGameList() {
             listBoxGames.Items.Clear();
-            foreach (string name in gameList.GetAllGameNames()) {
+            foreach (string name in GameList.GetAllGameNames()) {
                 listBoxGames.Items.Add(name);
             }
         }
@@ -53,26 +52,27 @@ namespace Gamemo
 
         private void btnDeleteGame_Click(object sender, EventArgs e)
         {
-            gameList.RemoveGame(listBoxGames.SelectedItem.ToString());
+            GameList.RemoveGame(listBoxGames.SelectedItem.ToString());
             textBoxGameMemo.Text = "";
             UpdateGameList();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            gameList.Save(fileName);
+            GameList.Save(fileName);
         }
 
         private void listBoxGames_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!textBoxGameMemo.Enabled)
                 textBoxGameMemo.Enabled = true;
-            textBoxGameMemo.Text = gameList.GetGameMemo(listBoxGames.SelectedItem.ToString());
+            textBoxGameMemo.Text = GameList.GetGameMemo(listBoxGames.SelectedItem.ToString());
         }
 
         private void textBoxGameMemo_LostFocus(object sender, EventArgs e)
         {
-            gameList.UpdateGameMemo(listBoxGames.SelectedItem.ToString(), textBoxGameMemo.Text);
+            GameList.UpdateGameMemo(listBoxGames.SelectedItem.ToString(), textBoxGameMemo.Text);
+            GameList.Save(fileName);
         }
     }
 }
