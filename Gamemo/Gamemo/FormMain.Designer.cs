@@ -29,9 +29,9 @@
         {
             this.buttonAddGame = new System.Windows.Forms.Button();
             this.listBoxGames = new System.Windows.Forms.ListBox();
-            this.textBoxGameMemo = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnDeleteGame = new System.Windows.Forms.Button();
+            this.BtnMemo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonAddGame
@@ -52,25 +52,14 @@
             this.listBoxGames.ItemHeight = 20;
             this.listBoxGames.Location = new System.Drawing.Point(12, 87);
             this.listBoxGames.Name = "listBoxGames";
-            this.listBoxGames.Size = new System.Drawing.Size(120, 284);
+            this.listBoxGames.Size = new System.Drawing.Size(293, 284);
             this.listBoxGames.TabIndex = 1;
             this.listBoxGames.SelectedIndexChanged += new System.EventHandler(this.listBoxGames_SelectedIndexChanged);
-            // 
-            // textBoxGameMemo
-            // 
-            this.textBoxGameMemo.Enabled = false;
-            this.textBoxGameMemo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxGameMemo.Location = new System.Drawing.Point(138, 87);
-            this.textBoxGameMemo.Multiline = true;
-            this.textBoxGameMemo.Name = "textBoxGameMemo";
-            this.textBoxGameMemo.Size = new System.Drawing.Size(433, 284);
-            this.textBoxGameMemo.TabIndex = 2;
-            this.textBoxGameMemo.LostFocus += new System.EventHandler(this.textBoxGameMemo_LostFocus);
             // 
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(431, 12);
+            this.btnSave.Location = new System.Drawing.Point(313, 12);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(140, 57);
             this.btnSave.TabIndex = 4;
@@ -89,18 +78,29 @@
             this.btnDeleteGame.UseVisualStyleBackColor = true;
             this.btnDeleteGame.Click += new System.EventHandler(this.btnDeleteGame_Click);
             // 
+            // BtnMemo
+            // 
+            this.BtnMemo.Enabled = false;
+            this.BtnMemo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnMemo.Location = new System.Drawing.Point(313, 87);
+            this.BtnMemo.Name = "BtnMemo";
+            this.BtnMemo.Size = new System.Drawing.Size(140, 284);
+            this.BtnMemo.TabIndex = 6;
+            this.BtnMemo.Text = "Memo";
+            this.BtnMemo.UseVisualStyleBackColor = true;
+            this.BtnMemo.Click += new System.EventHandler(this.BtnMemo_Click);
+            // 
             // FormMain
             // 
-            this.ClientSize = new System.Drawing.Size(583, 386);
+            this.ClientSize = new System.Drawing.Size(471, 386);
+            this.Controls.Add(this.BtnMemo);
             this.Controls.Add(this.btnDeleteGame);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.textBoxGameMemo);
             this.Controls.Add(this.listBoxGames);
             this.Controls.Add(this.buttonAddGame);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -109,9 +109,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button buttonAddGame;
         private System.Windows.Forms.ListBox listBoxGames;
-        private System.Windows.Forms.TextBox textBoxGameMemo;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnDeleteGame;
+        private System.Windows.Forms.Button BtnMemo;
     }
 }
 

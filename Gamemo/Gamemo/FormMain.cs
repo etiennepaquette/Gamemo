@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,30 +13,21 @@ namespace Gamemo
 {
     public partial class FormMain : Form
     {
-        string fileName = String.Format(@"{0}\gameList.json", Application.StartupPath);
-
         public FormMain()
         {
             InitializeComponent();
 
             SteamManager.Init();
-
-            if (File.Exists(fileName)) {
-                LoadGameList();
-            }
-        }
-
-        public void AddGame(string name) {
-            GameList.AddGame(name);
-            UpdateGameList();
+        
+            LoadGameList();
         }
 
         private void LoadGameList() {
-            GameList.Load(fileName);
+            GameList.Load();
             UpdateGameList();
         }
 
-        private void UpdateGameList() {
+        public void UpdateGameList() {
             listBoxGames.Items.Clear();
             foreach (string name in GameList.GetAllGameNames()) {
                 listBoxGames.Items.Add(name);
@@ -53,26 +43,24 @@ namespace Gamemo
         private void btnDeleteGame_Click(object sender, EventArgs e)
         {
             GameList.RemoveGame(listBoxGames.SelectedItem.ToString());
-            textBoxGameMemo.Text = "";
             UpdateGameList();
+            BtnMemo.Enabled = false;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            GameList.Save(fileName);
+            GameList.Save();
+        }
+
+        private void BtnMemo_Click(object sender, EventArgs e)
+        {
+            FormGame f = new FormGame(listBoxGames.SelectedItem.ToString());
+            f.Show();
         }
 
         private void listBoxGames_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!textBoxGameMemo.Enabled)
-                textBoxGameMemo.Enabled = true;
-            textBoxGameMemo.Text = GameList.GetGameMemo(listBoxGames.SelectedItem.ToString());
-        }
-
-        private void textBoxGameMemo_LostFocus(object sender, EventArgs e)
-        {
-            GameList.UpdateGameMemo(listBoxGames.SelectedItem.ToString(), textBoxGameMemo.Text);
-            GameList.Save(fileName);
+            BtnMemo.Enabled = true;
         }
     }
 }

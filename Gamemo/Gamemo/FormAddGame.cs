@@ -12,20 +12,19 @@ namespace Gamemo
 {
     public partial class FormAddGame : Form
     {
-        public FormAddGame()
+        List<Game> ownedGames;
+        FormMain formMain;
+
+        public FormAddGame(FormMain formMain)
         {
             InitializeComponent();
-        }
-
-        private FormMain mainForm = null;
-        public FormAddGame(Form callingForm) {
-            mainForm = callingForm as FormMain;
-            InitializeComponent();
+            this.formMain = formMain;
         }
 
         private void btnAddRandomGame_Click(object sender, EventArgs e)
         {
-            this.mainForm.AddGame(textBoxGameName.Text);
+            GameList.AddGame(textBoxGameName.Text);
+            this.formMain.UpdateGameList();
         }
 
         private void btnFetchGameList_Click(object sender, EventArgs e)
@@ -35,7 +34,7 @@ namespace Gamemo
             comboBoxGameList.Items.Clear();
             SteamManager.SetSteamUser(76561198000133291);
 
-            List<Game> ownedGames = SteamManager.GetOwnedGames();
+            ownedGames = SteamManager.GetOwnedGames();
 
             foreach (Game game in ownedGames) {
                 comboBoxGameList.Items.Add(game.Name);
@@ -47,7 +46,11 @@ namespace Gamemo
         private void btnAddSteamGame_Click(object sender, EventArgs e)
         {
             string gameName = comboBoxGameList.SelectedItem.ToString();
-            this.mainForm.AddGame(gameName);
+            Game g = ownedGames.Find(x => x.Name == gameName);
+            if (g != null) {
+                GameList.AddGame(g.AppID, g.Name);
+            }
+            this.formMain.UpdateGameList();
         }
     }
 }

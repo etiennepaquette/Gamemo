@@ -5,15 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json;
+using System.Windows.Forms;
 
 namespace Gamemo
 {
     public static class GameList
     {
         public static List<Game> games = new List<Game>();
+        private static readonly string FileName = String.Format(@"{0}\GameList.json", Application.StartupPath);
 
         public static void AddGame(string name) {
             games.Add(new Game(name));
+        }
+
+        public static void AddGame(int appID, string name)
+        {
+            games.Add(new Game(appID, name));
         }
 
         public static void RemoveGame(string name) {
@@ -21,11 +28,18 @@ namespace Gamemo
         }
 
         public static void UpdateGameMemo(string name, string newMemo) {
-            games.Find(x => x.Name == name).Memo = newMemo;
+            Game game = games.Find(x => x.Name == name);
+            if (game != null) {
+                game.Memo = newMemo;
+            }
         }
 
         public static string GetGameMemo(string name) {
-            return games.Find(x => x.Name == name).Memo;
+            Game game = games.Find(x => x.Name == name);
+            if (game != null) {
+                return game.Memo;
+            }
+            return null;
         }
 
         public static List<string> GetAllGameNames() {
@@ -36,12 +50,22 @@ namespace Gamemo
             return names;
         }
 
-        public static void Save(string fileName) {
-            File.WriteAllText(fileName, JsonConvert.SerializeObject(games, Formatting.Indented));
+        public static bool IsSteamGame(string gameName) {
+            Game game = games.Find(x => x.Name == gameName);
+            if (game != null) {
+                return game.IsSteamGame;
+            }
+            return false;
         }
 
-        public static void Load(string fileName) {
-            games = JsonConvert.DeserializeObject<List<Game>>(File.ReadAllText(fileName));
+        public static void Save() {
+            File.WriteAllText(FileName, JsonConvert.SerializeObject(games, Formatting.Indented));
+        }
+
+        public static void Load(){
+            if (File.Exists(FileName)) {
+                games = JsonConvert.DeserializeObject<List<Game>>(File.ReadAllText(FileName));
+            }
         }
     }
 }
