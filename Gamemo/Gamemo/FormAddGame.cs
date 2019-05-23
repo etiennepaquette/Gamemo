@@ -7,10 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Fluxter.SteamWebAPI;
-using Fluxter.SteamWebAPI.Interfaces.General.IPlayerService.GetOwnedGames;
-using Fluxter.SteamWebAPI.Interfaces.General.ISteamApps.GetAppList;
-using Fluxter.SteamWebAPI.Interfaces.General.ISteamUser.GetFriendList;
 
 namespace Gamemo
 {
@@ -34,23 +30,24 @@ namespace Gamemo
 
         private void btnFetchGameList_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("This may take some times depending of the amount of games in your library.");
+
             comboBoxGameList.Items.Clear();
-            SteamIdentity user = SteamIdentity.FromSteamID(76561198000133291);
+            SteamManager.SetSteamUser(76561198000133291);
 
-            var appListResponse = SteamWebAPI.General().ISteamApps().GetAppList().GetResponse();
-            List<App> appList = appListResponse.Data.Apps;
+            List<Game> ownedGames = SteamManager.GetOwnedGames();
 
-            var gameListResponse = SteamWebAPI.General().IPlayerService().GetOwnedGames(user).GetResponse();
-            List<GetOwnedGamesResponseGame> gameList = gameListResponse.Data.Games;
-            foreach (GetOwnedGamesResponseGame g in gameList) {
-                string gameName = appList.Find(item => item.AppID == g.AppID).Name;
-
-                if (gameName != null) {
-                    comboBoxGameList.Items.Add(gameName);
-                }
+            foreach (Game game in ownedGames) {
+                comboBoxGameList.Items.Add(game.Name);
             }
 
             MessageBox.Show("DONE");
+        }
+
+        private void btnAddSteamGame_Click(object sender, EventArgs e)
+        {
+            string gameName = comboBoxGameList.SelectedItem.ToString();
+            this.mainForm.AddGame(gameName);
         }
     }
 }

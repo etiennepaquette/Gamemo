@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Fluxter.SteamWebAPI;
 
 namespace Gamemo
 {
@@ -22,7 +21,7 @@ namespace Gamemo
         {
             InitializeComponent();
 
-            SteamWebAPI.SetGlobalKey("1E5E3956484C372C2D9AE6D58EFA4F69");
+            SteamManager.Init();
 
             if (File.Exists(fileName)) {
                 LoadGameList();

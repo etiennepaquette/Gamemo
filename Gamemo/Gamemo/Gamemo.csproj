@@ -74,6 +74,7 @@
     <Compile Include="GameList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SteamManager.cs" />
     <EmbeddedResource Include="FormAddGame.resx">
       <DependentUpon>FormAddGame.cs</DependentUpon>
     </EmbeddedResource>
