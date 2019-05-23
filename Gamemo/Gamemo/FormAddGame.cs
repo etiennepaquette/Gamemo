@@ -30,7 +30,7 @@ namespace Gamemo
 
         private void btnFetchGameList_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This may take some times depending of the amount of games in your library.");
+            MessageBox.Show("This may take some times depending of the number of games in your library.");
 
             comboBoxGameList.Items.Clear();
             SteamManager.SetSteamUser(76561198000133291);
