@@ -21,6 +21,7 @@ namespace Gamemo
             GameName = gameName;
             achievementsList = GameList.GetAchievements(GameName);
             ShowAchievList();
+            listBoxAchievements.SelectedIndex = 0;
         }
 
         private void ShowAchievList() {
@@ -34,6 +35,15 @@ namespace Gamemo
             labelAchievName.Text = achievementsList.ElementAt(listIndex).Name;
             labelAchievDesc.Text = achievementsList.ElementAt(listIndex).Description;
             pictureBoxIcon.ImageLocation = achievementsList.ElementAt(listIndex).Icon;
+            textBoxAchievMemo.Text = achievementsList.ElementAt(listIndex).Memo;
+        }
+
+        private void textBoxGameMemo_LostFocus(object sender, EventArgs e)
+        {
+            int listIndex = listBoxAchievements.SelectedIndex;
+            achievementsList.ElementAt(listIndex).Memo = textBoxAchievMemo.Text;
+            GameList.UpdateGameAchiev(GameName, achievementsList);
+            GameList.Save();
         }
     }
 }

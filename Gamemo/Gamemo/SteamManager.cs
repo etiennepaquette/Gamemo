@@ -48,14 +48,14 @@ namespace Gamemo
 
             String URLString = "https://steamcommunity.com/profiles/"+SteamID+"/stats/"+appID+"/achievements/?xml=1";
             XmlTextReader reader = new XmlTextReader(URLString);
-
+            
             bool readingAchievement = false;
             Achievement achievement = new Achievement();
             while (reader.Read()) {
                 switch (reader.NodeType) {
                     case XmlNodeType.Element: // The node is an element.
                         if (readingAchievement) {
-                            if (reader.Name == "iconOpen") {
+                            if (reader.Name == "iconClosed") {
                                 achievement.Icon = reader.ReadString();
                             }else if (reader.Name == "name") {
                                 achievement.Name = reader.ReadString();

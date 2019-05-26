@@ -36,6 +36,13 @@ namespace Gamemo
             }
         }
 
+        public static void UpdateGameAchiev(string gameName, List<Achievement> achievs) {
+            Game game = games.Find(x => x.Name == gameName);
+            if (game != null) {
+                game.achievements = achievs;
+            }
+        }
+
         public static string GetGameMemo(string name) {
             Game game = games.Find(x => x.Name == name);
             if (game != null) {

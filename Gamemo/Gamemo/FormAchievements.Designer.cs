@@ -42,7 +42,7 @@
             this.listBoxAchievements.ItemHeight = 20;
             this.listBoxAchievements.Location = new System.Drawing.Point(12, 12);
             this.listBoxAchievements.Name = "listBoxAchievements";
-            this.listBoxAchievements.Size = new System.Drawing.Size(184, 424);
+            this.listBoxAchievements.Size = new System.Drawing.Size(184, 264);
             this.listBoxAchievements.TabIndex = 0;
             this.listBoxAchievements.SelectedIndexChanged += new System.EventHandler(this.listBoxAchievements_SelectedIndexChanged);
             // 
@@ -80,14 +80,15 @@
             this.textBoxAchievMemo.Location = new System.Drawing.Point(202, 82);
             this.textBoxAchievMemo.Multiline = true;
             this.textBoxAchievMemo.Name = "textBoxAchievMemo";
-            this.textBoxAchievMemo.Size = new System.Drawing.Size(299, 354);
+            this.textBoxAchievMemo.Size = new System.Drawing.Size(464, 194);
             this.textBoxAchievMemo.TabIndex = 4;
+            this.textBoxAchievMemo.LostFocus += new System.EventHandler(this.textBoxGameMemo_LostFocus);
             // 
             // FormAchievements
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(517, 450);
+            this.ClientSize = new System.Drawing.Size(678, 288);
             this.Controls.Add(this.textBoxAchievMemo);
             this.Controls.Add(this.labelAchievDesc);
             this.Controls.Add(this.pictureBoxIcon);
