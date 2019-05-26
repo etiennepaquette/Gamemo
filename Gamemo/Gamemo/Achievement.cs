@@ -12,6 +12,7 @@ namespace Gamemo
         public string Name { get; set; }
         public string APIName { get; set; }
         public string Description { get; set; }
+        public string Memo { get; set; }
 
         public Achievement() { }
 

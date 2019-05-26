@@ -79,7 +79,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(435, 295);
             this.Controls.Add(this.BtnAchievements);
             this.Controls.Add(this.textBoxGameMemo);
             this.Controls.Add(this.labelGameName);

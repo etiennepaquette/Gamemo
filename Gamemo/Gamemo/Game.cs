@@ -12,6 +12,7 @@ namespace Gamemo
         public int AppID { get; set; }
         public string Name { get; set; }
         public string Memo { get; set; }
+        public List<Achievement> achievements = new List<Achievement>();
 
         public Game() { }
 

@@ -33,7 +33,8 @@ namespace Gamemo
 
         private void BtnAchievements_Click(object sender, EventArgs e)
         {
-
+            FormAchievements f = new FormAchievements(GameName);
+            f.Show();
         }
     }
 }

@@ -11,16 +11,18 @@ namespace Gamemo
 {
     public static class GameList
     {
-        public static List<Game> games = new List<Game>();
         private static readonly string FileName = String.Format(@"{0}\GameList.json", Application.StartupPath);
+        private static List<Game> games = new List<Game>();
 
         public static void AddGame(string name) {
             games.Add(new Game(name));
         }
 
-        public static void AddGame(int appID, string name)
+        public static void AddSteamGame(int appID, string name)
         {
-            games.Add(new Game(appID, name));
+            Game game = new Game(appID, name);
+            game.achievements = SteamManager.GetGameAchievements(appID);
+            games.Add(game);
         }
 
         public static void RemoveGame(string name) {
@@ -38,6 +40,14 @@ namespace Gamemo
             Game game = games.Find(x => x.Name == name);
             if (game != null) {
                 return game.Memo;
+            }
+            return null;
+        }
+
+        public static List<Achievement> GetAchievements(string gameName) {
+            Game game = games.Find(x => x.Name == gameName);
+            if (game != null) {
+                return game.achievements;
             }
             return null;
         }

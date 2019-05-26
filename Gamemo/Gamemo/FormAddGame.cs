@@ -48,7 +48,7 @@ namespace Gamemo
             string gameName = comboBoxGameList.SelectedItem.ToString();
             Game g = ownedGames.Find(x => x.Name == gameName);
             if (g != null) {
-                GameList.AddGame(g.AppID, g.Name);
+                GameList.AddSteamGame(g.AppID, g.Name);
             }
             this.formMain.UpdateGameList();
         }
