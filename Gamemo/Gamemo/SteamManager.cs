@@ -2,6 +2,7 @@
 using Fluxter.SteamWebAPI.Interfaces.General.IPlayerService.GetOwnedGames;
 using Fluxter.SteamWebAPI.Interfaces.General.ISteamApps.GetAppList;
 using Fluxter.SteamWebAPI.Interfaces.General.ISteamUserStats.GetPlayerAchievements;
+using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,24 +45,51 @@ namespace Gamemo
         }
 
         public static List<Achievement> GetGameAchievements(int appID) {
-            List<Achievement> achievementList = new List<Achievement>();
+            try {
+                return GetAchieveByXML(appID);
+            } catch {
+                return GetAchieveByHTML(appID); ;
+            }
+        }
 
-            String URLString = "https://steamcommunity.com/profiles/"+SteamID+"/stats/"+appID+"/achievements/?xml=1";
+        private static List<Achievement> GetAchieveByHTML(int appID) {
+            List<Achievement> achievementList = new List<Achievement>();
+            var html = @"https://steamcommunity.com/profiles/" + SteamID + "/stats/" + appID;
+            HtmlWeb web = new HtmlWeb();
+            var htmlDoc = web.Load(html);
+            var nodes = htmlDoc.DocumentNode.SelectNodes("//html[1]/body[1]/div[1]/div[7]/div[2]/div[1]/div[2]/div[1]/div[4]");
+
+            if (nodes.First().Id == "personalAchieve") {
+                foreach (var achieve in nodes.First().Elements("div")) {
+                    if (achieve.Descendants("div").Where(x => x.HasClass("achieveUnlockTime")).Count() == 1) {
+                        continue;
+                    }
+                    var img = achieve.Descendants("img").First().Attributes["src"].Value;
+                    var name = achieve.Descendants("h3").First().InnerHtml;
+                    var desc = achieve.Descendants("h5").First().InnerHtml;
+                    achievementList.Add(new Achievement(img, name, desc));
+                }
+            }
+
+            return achievementList;
+        }
+
+        private static List<Achievement> GetAchieveByXML(int appID){
+            List<Achievement> achievementList = new List<Achievement>();
+            String URLString = "https://steamcommunity.com/profiles/" + SteamID + "/stats/" + appID + "/achievements/?xml=1";
             XmlTextReader reader = new XmlTextReader(URLString);
-            
             bool readingAchievement = false;
             Achievement achievement = new Achievement();
+
             while (reader.Read()) {
                 switch (reader.NodeType) {
                     case XmlNodeType.Element: // The node is an element.
                         if (readingAchievement) {
                             if (reader.Name == "iconClosed") {
                                 achievement.Icon = reader.ReadString();
-                            }else if (reader.Name == "name") {
+                            } else if (reader.Name == "name") {
                                 achievement.Name = reader.ReadString();
-                            }else if(reader.Name == "apiname") {
-                                achievement.APIName = reader.ReadString();
-                            }else if (reader.Name == "description") {
+                            } else if (reader.Name == "description") {
                                 achievement.Description = reader.ReadString();
                             }
                         } else if (reader.Name == "achievement") {

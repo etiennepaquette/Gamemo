@@ -105,8 +105,7 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
+        
         private System.Windows.Forms.Button buttonAddGame;
         private System.Windows.Forms.ListBox listBoxGames;
         private System.Windows.Forms.Button btnSave;
