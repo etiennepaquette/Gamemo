@@ -1,5 +1,4 @@
-﻿using HtmlAgilityPack;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -33,6 +32,7 @@ namespace Gamemo
             foreach (string name in GameList.GetAllGameNames()) {
                 listBoxGames.Items.Add(name);
             }
+            GameList.Save();
         }
 
         private void buttonAddGame_Click(object sender, EventArgs e)

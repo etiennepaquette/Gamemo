@@ -30,8 +30,6 @@
             this.btnAddRandomGame = new System.Windows.Forms.Button();
             this.textBoxGameName = new System.Windows.Forms.TextBox();
             this.comboBoxGameList = new System.Windows.Forms.ComboBox();
-            this.textBoxSteamID = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnFetchGameList = new System.Windows.Forms.Button();
             this.btnAddSteamGame = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -59,36 +57,18 @@
             // 
             this.comboBoxGameList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxGameList.FormattingEnabled = true;
-            this.comboBoxGameList.Location = new System.Drawing.Point(12, 198);
+            this.comboBoxGameList.Location = new System.Drawing.Point(12, 120);
             this.comboBoxGameList.Name = "comboBoxGameList";
             this.comboBoxGameList.Size = new System.Drawing.Size(361, 28);
             this.comboBoxGameList.Sorted = true;
             this.comboBoxGameList.TabIndex = 2;
             // 
-            // textBoxSteamID
-            // 
-            this.textBoxSteamID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxSteamID.Location = new System.Drawing.Point(88, 166);
-            this.textBoxSteamID.Name = "textBoxSteamID";
-            this.textBoxSteamID.Size = new System.Drawing.Size(100, 26);
-            this.textBoxSteamID.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 169);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 20);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "SteamID";
-            // 
             // btnFetchGameList
             // 
             this.btnFetchGameList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFetchGameList.Location = new System.Drawing.Point(194, 166);
+            this.btnFetchGameList.Location = new System.Drawing.Point(12, 88);
             this.btnFetchGameList.Name = "btnFetchGameList";
-            this.btnFetchGameList.Size = new System.Drawing.Size(179, 26);
+            this.btnFetchGameList.Size = new System.Drawing.Size(361, 26);
             this.btnFetchGameList.TabIndex = 5;
             this.btnFetchGameList.Text = "Fetch Game List";
             this.btnFetchGameList.UseVisualStyleBackColor = true;
@@ -97,7 +77,7 @@
             // btnAddSteamGame
             // 
             this.btnAddSteamGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddSteamGame.Location = new System.Drawing.Point(12, 232);
+            this.btnAddSteamGame.Location = new System.Drawing.Point(12, 154);
             this.btnAddSteamGame.Name = "btnAddSteamGame";
             this.btnAddSteamGame.Size = new System.Drawing.Size(361, 29);
             this.btnAddSteamGame.TabIndex = 6;
@@ -109,11 +89,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(385, 272);
+            this.ClientSize = new System.Drawing.Size(385, 195);
             this.Controls.Add(this.btnAddSteamGame);
             this.Controls.Add(this.btnFetchGameList);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBoxSteamID);
             this.Controls.Add(this.comboBoxGameList);
             this.Controls.Add(this.textBoxGameName);
             this.Controls.Add(this.btnAddRandomGame);
@@ -130,8 +108,6 @@
         private System.Windows.Forms.Button btnAddRandomGame;
         private System.Windows.Forms.TextBox textBoxGameName;
         private System.Windows.Forms.ComboBox comboBoxGameList;
-        private System.Windows.Forms.TextBox textBoxSteamID;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnFetchGameList;
         private System.Windows.Forms.Button btnAddSteamGame;
     }
