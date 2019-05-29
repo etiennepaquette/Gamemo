@@ -100,6 +100,7 @@
             this.Controls.Add(this.buttonAddGame);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.ResumeLayout(false);
 
         }

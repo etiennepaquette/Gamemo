@@ -13,17 +13,18 @@ namespace Gamemo
 {
     public partial class FormMain : Form
     {
-        public FormMain()
-        {
-            InitializeComponent();
+        private string ProfileName;
 
-            SteamManager.Init();
-        
+        public FormMain(string profileName, long steamID)
+        {
+            ProfileName = profileName;
+            InitializeComponent();
+            SteamManager.Init(steamID);
             LoadGameList();
         }
 
         private void LoadGameList() {
-            GameList.Load();
+            GameList.Load(ProfileName);
             UpdateGameList();
         }
 
@@ -32,7 +33,7 @@ namespace Gamemo
             foreach (string name in GameList.GetAllGameNames()) {
                 listBoxGames.Items.Add(name);
             }
-            GameList.Save();
+            GameList.Save(ProfileName);
         }
 
         private void buttonAddGame_Click(object sender, EventArgs e)
@@ -50,7 +51,7 @@ namespace Gamemo
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            GameList.Save();
+            GameList.Save(ProfileName);
         }
 
         private void BtnMemo_Click(object sender, EventArgs e)
@@ -62,6 +63,11 @@ namespace Gamemo
         private void listBoxGames_SelectedIndexChanged(object sender, EventArgs e)
         {
             BtnMemo.Enabled = true;
+        }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -17,8 +17,13 @@ namespace Gamemo
         private static SteamIdentity User;
         private static long SteamID;
         private static List<App> AppList;
+        public static bool IsSteamProfile = true;
 
-        public static void Init() {
+        public static void Init(long steamID) {
+            if (steamID == 0) {
+                IsSteamProfile = false;
+            }
+            
             SteamWebAPI.SetGlobalKey("1E5E3956484C372C2D9AE6D58EFA4F69");
             var appListResponse = SteamWebAPI.General().ISteamApps().GetAppList().GetResponse();
             AppList = appListResponse.Data.Apps;

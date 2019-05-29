@@ -28,7 +28,7 @@ namespace Gamemo
         private void textBoxGameMemo_LostFocus(object sender, EventArgs e)
         {
             GameList.UpdateGameMemo(GameName, textBoxGameMemo.Text);
-            GameList.Save();
+            GameList.Save("Daisuke");
         }
 
         private void BtnAchievements_Click(object sender, EventArgs e)

@@ -11,7 +11,6 @@ namespace Gamemo
 {
     public static class GameList
     {
-        private static readonly string FileName = String.Format(@"{0}\GameList.json", Application.StartupPath);
         private static List<Game> games = new List<Game>();
 
         public static void AddGame(string name) {
@@ -75,13 +74,17 @@ namespace Gamemo
             return false;
         }
 
-        public static void Save() {
-            File.WriteAllText(FileName, JsonConvert.SerializeObject(games, Formatting.Indented));
+        public static void Save(string profileName) {
+            if (games.Count != 0) {
+                string fileName = Application.StartupPath + "/" + profileName + ".json";
+                File.WriteAllText(fileName, JsonConvert.SerializeObject(games, Formatting.Indented));
+            }
         }
 
-        public static void Load(){
-            if (File.Exists(FileName)) {
-                games = JsonConvert.DeserializeObject<List<Game>>(File.ReadAllText(FileName));
+        public static void Load(string profileName){
+            string fileName = Application.StartupPath + "/" + profileName + ".json";
+            if (File.Exists(fileName)) {
+                games = JsonConvert.DeserializeObject<List<Game>>(File.ReadAllText(fileName));
             }
         }
     }

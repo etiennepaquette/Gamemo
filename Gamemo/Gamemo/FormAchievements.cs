@@ -43,7 +43,7 @@ namespace Gamemo
             int listIndex = listBoxAchievements.SelectedIndex;
             achievementsList.ElementAt(listIndex).Memo = textBoxAchievMemo.Text;
             GameList.UpdateGameAchiev(GameName, achievementsList);
-            GameList.Save();
+            GameList.Save("Daisuke");
         }
     }
 }
