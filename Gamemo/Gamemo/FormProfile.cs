@@ -29,6 +29,7 @@ namespace Gamemo
             Profiles.Add(new Profile(name, id));
             File.WriteAllText(FileName, JsonConvert.SerializeObject(Profiles, Formatting.Indented));
             LoadProfiles();
+            listBoxProfileNames.SelectedIndex = listBoxProfileNames.Items.Count - 1;
         }
 
         public void LoadProfiles()

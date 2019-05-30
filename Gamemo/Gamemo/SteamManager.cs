@@ -22,11 +22,14 @@ namespace Gamemo
         public static void Init(long steamID) {
             if (steamID == 0) {
                 IsSteamProfile = false;
+                return;
             }
-            
+
             SteamWebAPI.SetGlobalKey("1E5E3956484C372C2D9AE6D58EFA4F69");
             var appListResponse = SteamWebAPI.General().ISteamApps().GetAppList().GetResponse();
             AppList = appListResponse.Data.Apps;
+            SteamID = steamID;
+            User = SteamIdentity.FromSteamID(steamID);
         }
 
         public static void SetSteamUser(long steamID) {
@@ -64,7 +67,7 @@ namespace Gamemo
             var htmlDoc = web.Load(html);
             var nodes = htmlDoc.DocumentNode.SelectNodes("//html[1]/body[1]/div[1]/div[7]/div[2]/div[1]/div[2]/div[1]/div[4]");
 
-            if (nodes.First().Id == "personalAchieve") {
+            if (nodes != null && nodes.First().Id == "personalAchieve") {
                 foreach (var achieve in nodes.First().Elements("div")) {
                     if (achieve.Descendants("div").Where(x => x.HasClass("achieveUnlockTime")).Count() == 1) {
                         continue;

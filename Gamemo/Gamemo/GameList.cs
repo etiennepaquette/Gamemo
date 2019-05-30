@@ -20,7 +20,10 @@ namespace Gamemo
         public static void AddSteamGame(int appID, string name)
         {
             Game game = new Game(appID, name);
-            game.achievements = SteamManager.GetGameAchievements(appID);
+            List<Achievement> achieve = SteamManager.GetGameAchievements(appID);
+            if (achieve.Count > 0) {
+                game.achievements = achieve;
+            }
             games.Add(game);
         }
 
@@ -56,6 +59,10 @@ namespace Gamemo
                 return game.achievements;
             }
             return null;
+        }
+
+        public static int GetAchievementsCounts(string gameName) {
+            return GetAchievements(gameName).Count;
         }
 
         public static List<string> GetAllGameNames() {
