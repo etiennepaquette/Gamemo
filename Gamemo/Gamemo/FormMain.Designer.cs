@@ -27,12 +27,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.buttonAddGame = new System.Windows.Forms.Button();
             this.listBoxGames = new System.Windows.Forms.ListBox();
             this.btnDeleteGame = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.BtnAddSteamGame = new System.Windows.Forms.Button();
             this.btnFetchGameList = new System.Windows.Forms.Button();
             this.comboBoxGameList = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -40,7 +42,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.TxtBoxGameMemo = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.BtnAddSteamGame = new System.Windows.Forms.Button();
             this.BtnGameAchievements = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -114,6 +115,17 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Steam Game";
             // 
+            // BtnAddSteamGame
+            // 
+            this.BtnAddSteamGame.Enabled = false;
+            this.BtnAddSteamGame.Location = new System.Drawing.Point(92, 114);
+            this.BtnAddSteamGame.Name = "BtnAddSteamGame";
+            this.BtnAddSteamGame.Size = new System.Drawing.Size(146, 56);
+            this.BtnAddSteamGame.TabIndex = 11;
+            this.BtnAddSteamGame.Text = "Add Steam Game";
+            this.BtnAddSteamGame.UseVisualStyleBackColor = true;
+            this.BtnAddSteamGame.Click += new System.EventHandler(this.BtnAddSteamGame_Click);
+            // 
             // btnFetchGameList
             // 
             this.btnFetchGameList.Enabled = false;
@@ -186,17 +198,6 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "Game\'s memo";
             // 
-            // BtnAddSteamGame
-            // 
-            this.BtnAddSteamGame.Enabled = false;
-            this.BtnAddSteamGame.Location = new System.Drawing.Point(92, 114);
-            this.BtnAddSteamGame.Name = "BtnAddSteamGame";
-            this.BtnAddSteamGame.Size = new System.Drawing.Size(146, 56);
-            this.BtnAddSteamGame.TabIndex = 11;
-            this.BtnAddSteamGame.Text = "Add Steam Game";
-            this.BtnAddSteamGame.UseVisualStyleBackColor = true;
-            this.BtnAddSteamGame.Click += new System.EventHandler(this.BtnAddSteamGame_Click);
-            // 
             // BtnGameAchievements
             // 
             this.BtnGameAchievements.Enabled = false;
@@ -219,6 +220,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnDeleteGame);
             this.Controls.Add(this.listBoxGames);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);

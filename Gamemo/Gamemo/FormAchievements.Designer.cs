@@ -27,6 +27,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAchievements));
             this.listBoxAchievements = new System.Windows.Forms.ListBox();
             this.labelAchievName = new System.Windows.Forms.Label();
             this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
@@ -94,6 +95,7 @@
             this.Controls.Add(this.pictureBoxIcon);
             this.Controls.Add(this.labelAchievName);
             this.Controls.Add(this.listBoxAchievements);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormAchievements";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAchievements";
