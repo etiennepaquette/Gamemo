@@ -32,7 +32,7 @@ namespace Gamemo
 
         private void listBoxAchievements_SelectedIndexChanged(object sender, EventArgs e){
             int listIndex = listBoxAchievements.SelectedIndex;
-            labelAchievName.Text = achievementsList.ElementAt(listIndex).Name;
+            labelAchievName.Text = achievementsList.ElementAt(listIndex).Name + " (Global Percent: " + achievementsList.ElementAt(listIndex).GlobalPercentage + "%)";
             labelAchievDesc.Text = achievementsList.ElementAt(listIndex).Description;
             pictureBoxIcon.ImageLocation = achievementsList.ElementAt(listIndex).Icon;
             textBoxAchievMemo.Text = achievementsList.ElementAt(listIndex).Memo;

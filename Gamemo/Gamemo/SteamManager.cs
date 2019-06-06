@@ -52,15 +52,33 @@ namespace Gamemo
             return gamesList;
         }
 
-        public static List<Achievement> GetGameAchievements(int appID) {
+        public static Dictionary<string, float> GetGlobalAchievePercentagesByHTML(int appID) {
+            Dictionary<string, float> globalAchievePerc = new Dictionary<string, float>();
+            string url = @"https://steamcommunity.com/stats/"+ appID +"/achievements/";
+            HtmlWeb web = new HtmlWeb();
+            var htmlDoc = web.Load(url);
+            var nodes = htmlDoc.DocumentNode.SelectNodes("//div[contains(@class,'achieveRow')]");
+
+            foreach (var achieve in nodes) {
+                string percentText = achieve.Descendants("div").Where(x => x.HasClass("achievePercent")).First().InnerHtml;
+                float percent = float.Parse(percentText.Remove(percentText.Length - 1));
+                string name = achieve.Descendants("h3").First().InnerHtml;
+                globalAchievePerc[name] = percent;
+            }
+
+            return globalAchievePerc;
+        }
+
+        public static List<Achievement> GetGameAchievements(int appID){
+            Dictionary<string, float> globalAchievePerc = GetGlobalAchievePercentagesByHTML(appID);
             try {
-                return GetAchieveByXML(appID);
+                return GetAchieveByXML(appID, globalAchievePerc);
             } catch {
-                return GetAchieveByHTML(appID); ;
+                return GetAchieveByHTML(appID, globalAchievePerc); ;
             }
         }
 
-        private static List<Achievement> GetAchieveByHTML(int appID) {
+        private static List<Achievement> GetAchieveByHTML(int appID, Dictionary<string, float> globalAchievePerc) {
             List<Achievement> achievementList = new List<Achievement>();
             var html = @"https://steamcommunity.com/profiles/" + SteamID + "/stats/" + appID;
             HtmlWeb web = new HtmlWeb();
@@ -75,14 +93,15 @@ namespace Gamemo
                     var img = achieve.Descendants("img").First().Attributes["src"].Value;
                     var name = achieve.Descendants("h3").First().InnerHtml;
                     var desc = achieve.Descendants("h5").First().InnerHtml;
-                    achievementList.Add(new Achievement(img, name, desc));
+                    achievementList.Add(new Achievement(img, name, desc, globalAchievePerc[name]));
                 }
             }
 
             return achievementList;
         }
 
-        private static List<Achievement> GetAchieveByXML(int appID){
+        private static List<Achievement> GetAchieveByXML(int appID, Dictionary<string, float> globalAchievePerc)
+        {
             List<Achievement> achievementList = new List<Achievement>();
             String URLString = "https://steamcommunity.com/profiles/" + SteamID + "/stats/" + appID + "/achievements/?xml=1";
             XmlTextReader reader = new XmlTextReader(URLString);
@@ -112,6 +131,7 @@ namespace Gamemo
                     case XmlNodeType.EndElement: //Display the end of the element.
                         if (reader.Name == "achievement" && readingAchievement) {
                             readingAchievement = false;
+                            achievement.GlobalPercentage = globalAchievePerc[achievement.Name];
                             achievementList.Add(achievement);
                         }
                         break;

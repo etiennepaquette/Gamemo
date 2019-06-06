@@ -12,13 +12,15 @@ namespace Gamemo
         public string Name { get; set; }
         public string Description { get; set; }
         public string Memo { get; set; }
+        public float GlobalPercentage { get; set; }
 
         public Achievement() { }
 
-        public Achievement(string icon, string name, string description) {
+        public Achievement(string icon, string name, string description, float globalPerc) {
             Icon = icon;
             Name = name;
             Description = description;
+            GlobalPercentage = globalPerc;
         }
     }
 }
