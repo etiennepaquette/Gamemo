@@ -21,13 +21,17 @@ namespace Gamemo
             GameName = gameName;
             achievementsList = GameList.GetAchievements(GameName);
             ShowAchievList();
-            listBoxAchievements.SelectedIndex = 0;
         }
 
         private void ShowAchievList() {
+            listBoxAchievements.Items.Clear();
             foreach (Achievement a in achievementsList) {
                 listBoxAchievements.Items.Add(a.Name);
+                if (a.Memo != null && a.Memo != "") {
+                    
+                }
             }
+            listBoxAchievements.SelectedIndex = 0;
         }
 
         private void listBoxAchievements_SelectedIndexChanged(object sender, EventArgs e){
@@ -44,6 +48,28 @@ namespace Gamemo
             achievementsList.ElementAt(listIndex).Memo = textBoxAchievMemo.Text;
             GameList.UpdateGameAchiev(GameName, achievementsList);
             GameList.Save("Daisuke");
+        }
+
+        private void BtnDeleteAchieve_Click(object sender, EventArgs e)
+        {
+            string achieveName = listBoxAchievements.SelectedItem.ToString();
+            GameList.DeleteAchieve(GameName, achieveName);
+            ShowAchievList();
+        }
+
+        private void listBoxAchievements_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            Brush myBrush = Brushes.Black;
+            string achieveName = listBoxAchievements.Items[e.Index].ToString();
+            if (GameList.DoesAchieveGotMemo(GameName, achieveName)) {
+                myBrush = Brushes.YellowGreen;
+            }
+
+            e.DrawBackground();
+            e.Graphics.DrawString(listBoxAchievements.Items[e.Index].ToString(), listBoxAchievements.Font, myBrush, e.Bounds);
+            /*foreach (ListBox.ObjectCollection i in listBoxAchievements.Items) {
+
+            }*/
         }
     }
 }

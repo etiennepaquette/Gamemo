@@ -90,10 +90,12 @@ namespace Gamemo
                     if (achieve.Descendants("div").Where(x => x.HasClass("achieveUnlockTime")).Count() == 1) {
                         continue;
                     }
-                    var img = achieve.Descendants("img").First().Attributes["src"].Value;
-                    var name = achieve.Descendants("h3").First().InnerHtml;
-                    var desc = achieve.Descendants("h5").First().InnerHtml;
-                    achievementList.Add(new Achievement(img, name, desc, globalAchievePerc[name]));
+                    if (achieve.Descendants("img").Count() != 0) {
+                        var img = achieve.Descendants("img").First().Attributes["src"].Value;
+                        var name = achieve.Descendants("h3").First().InnerHtml;
+                        var desc = achieve.Descendants("h5").First().InnerHtml;
+                        achievementList.Add(new Achievement(img, name, desc, globalAchievePerc[name]));
+                    }
                 }
             }
 

@@ -179,11 +179,14 @@
             // 
             // TxtBoxGameMemo
             // 
+            this.TxtBoxGameMemo.AcceptsReturn = true;
+            this.TxtBoxGameMemo.AcceptsTab = true;
             this.TxtBoxGameMemo.Enabled = false;
             this.TxtBoxGameMemo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtBoxGameMemo.Location = new System.Drawing.Point(216, 42);
             this.TxtBoxGameMemo.Multiline = true;
             this.TxtBoxGameMemo.Name = "TxtBoxGameMemo";
+            this.TxtBoxGameMemo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.TxtBoxGameMemo.Size = new System.Drawing.Size(348, 284);
             this.TxtBoxGameMemo.TabIndex = 9;
             this.TxtBoxGameMemo.Leave += new System.EventHandler(this.TxtBoxGameMemo_Leave);

@@ -94,5 +94,26 @@ namespace Gamemo
                 games = JsonConvert.DeserializeObject<List<Game>>(File.ReadAllText(fileName));
             }
         }
+
+        public static void DeleteAchieve(string gameName, string achieveName) {
+            Game game = games.Find(x => x.Name == gameName);
+            if (game != null) {
+                Achievement achieve = game.achievements.Find(x => x.Name == achieveName);
+                game.achievements.Remove(GetAchievement(gameName, achieveName));
+            }
+        }
+
+        public static bool DoesAchieveGotMemo(string gameName, string achieveName) {
+            string memo = GetAchievement(gameName, achieveName).Memo;
+            return (memo != null && memo != "");
+        }
+
+        private static Achievement GetAchievement(string gameName, string achieveName) {
+            Game game = games.Find(x => x.Name == gameName);
+            if (game != null) {
+                return game.achievements.Find(x => x.Name == achieveName);
+            }
+            return null;
+        }
     }
 }
