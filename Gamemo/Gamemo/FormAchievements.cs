@@ -36,10 +36,12 @@ namespace Gamemo
 
         private void listBoxAchievements_SelectedIndexChanged(object sender, EventArgs e){
             int listIndex = listBoxAchievements.SelectedIndex;
-            labelAchievName.Text = achievementsList.ElementAt(listIndex).Name + " (Global Percent: " + achievementsList.ElementAt(listIndex).GlobalPercentage + "%)";
-            labelAchievDesc.Text = achievementsList.ElementAt(listIndex).Description;
-            pictureBoxIcon.ImageLocation = achievementsList.ElementAt(listIndex).Icon;
-            textBoxAchievMemo.Text = achievementsList.ElementAt(listIndex).Memo;
+            if (listIndex >= 0) {
+                labelAchievName.Text = achievementsList.ElementAt(listIndex).Name + " (Global Percent: " + achievementsList.ElementAt(listIndex).GlobalPercentage + "%)";
+                labelAchievDesc.Text = achievementsList.ElementAt(listIndex).Description;
+                pictureBoxIcon.ImageLocation = achievementsList.ElementAt(listIndex).Icon;
+                textBoxAchievMemo.Text = achievementsList.ElementAt(listIndex).Memo;
+            }
         }
 
         private void textBoxGameMemo_LostFocus(object sender, EventArgs e)
@@ -52,9 +54,11 @@ namespace Gamemo
 
         private void BtnDeleteAchieve_Click(object sender, EventArgs e)
         {
+            int index = listBoxAchievements.SelectedIndex;
             string achieveName = listBoxAchievements.SelectedItem.ToString();
             GameList.DeleteAchieve(GameName, achieveName);
             ShowAchievList();
+            listBoxAchievements.SelectedIndex = index - 1;
         }
 
         private void listBoxAchievements_DrawItem(object sender, DrawItemEventArgs e)
