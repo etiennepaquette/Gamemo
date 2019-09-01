@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +18,12 @@ namespace Gamemo
         private string ProfileName;
         List<Game> ownedGames;
 
+        public FormMain() {
+            InitializeComponent();
+            LoadProfile();
+            LoadGameList();
+        }
+
         public FormMain(string profileName, long steamID)
         {
             ProfileName = profileName;
@@ -27,6 +35,25 @@ namespace Gamemo
                 BtnAddSteamGame.Enabled = true;
             }
             LoadGameList();
+        }
+
+        private void LoadProfile() {
+            string fileName = Application.StartupPath + "/Profile.json";
+
+            if (!File.Exists(fileName)) {
+                FormProfile f = new FormProfile();
+                f.ShowDialog();
+            }
+
+            List<Profile> profiles = JsonConvert.DeserializeObject<List<Profile>>(File.ReadAllText(fileName));
+            // TODO: Deal with multiple profiles
+            ProfileName = profiles.First<Profile>().Name;
+            if (profiles.First<Profile>().SteamID != 0) {
+                SteamManager.Init(profiles.First<Profile>().SteamID);
+                btnFetchGameList.Enabled = true;
+                comboBoxGameList.Enabled = true;
+                BtnAddSteamGame.Enabled = true;
+            }
         }
 
         private void LoadGameList() {
@@ -115,7 +142,7 @@ namespace Gamemo
         private void BtnGameAchievements_Click(object sender, EventArgs e)
         {
             FormAchievements f = new FormAchievements(listBoxGames.SelectedItem.ToString());
-            f.Show();
+            f.ShowDialog();
         }
     }
 }

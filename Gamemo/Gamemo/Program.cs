@@ -16,7 +16,7 @@ namespace Gamemo
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormProfile());
+            Application.Run(new FormMain());
         }
     }
 }

@@ -28,28 +28,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormProfile));
-            this.listBoxProfileNames = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.BtnCreateProfile = new System.Windows.Forms.Button();
             this.textBoxSteamID = new System.Windows.Forms.TextBox();
             this.textBoxProfileName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.BtnOpenProfile = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // listBoxProfileNames
-            // 
-            this.listBoxProfileNames.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBoxProfileNames.FormattingEnabled = true;
-            this.listBoxProfileNames.ItemHeight = 20;
-            this.listBoxProfileNames.Location = new System.Drawing.Point(6, 34);
-            this.listBoxProfileNames.Name = "listBoxProfileNames";
-            this.listBoxProfileNames.Size = new System.Drawing.Size(215, 44);
-            this.listBoxProfileNames.TabIndex = 0;
             // 
             // groupBox1
             // 
@@ -59,7 +45,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 106);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(383, 159);
             this.groupBox1.TabIndex = 3;
@@ -108,57 +94,30 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Name: ";
             // 
-            // BtnOpenProfile
-            // 
-            this.BtnOpenProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnOpenProfile.Location = new System.Drawing.Point(232, 34);
-            this.BtnOpenProfile.Name = "BtnOpenProfile";
-            this.BtnOpenProfile.Size = new System.Drawing.Size(139, 44);
-            this.BtnOpenProfile.TabIndex = 1;
-            this.BtnOpenProfile.Text = "Open";
-            this.BtnOpenProfile.UseVisualStyleBackColor = true;
-            this.BtnOpenProfile.Click += new System.EventHandler(this.BtnOpenProfile_Click);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.listBoxProfileNames);
-            this.groupBox2.Controls.Add(this.BtnOpenProfile);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(12, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(383, 88);
-            this.groupBox2.TabIndex = 0;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Open Profile";
-            // 
             // FormProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(405, 274);
-            this.Controls.Add(this.groupBox2);
+            this.ClientSize = new System.Drawing.Size(405, 182);
+            this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FormProfile";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormProfile";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox listBoxProfileNames;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button BtnCreateProfile;
         private System.Windows.Forms.TextBox textBoxSteamID;
         private System.Windows.Forms.TextBox textBoxProfileName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button BtnOpenProfile;
-        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
