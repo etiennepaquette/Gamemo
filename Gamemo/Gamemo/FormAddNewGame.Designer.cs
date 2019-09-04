@@ -29,6 +29,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddNewGame));
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.PicBoxLoading = new System.Windows.Forms.PictureBox();
             this.BtnAddSteamGame = new System.Windows.Forms.Button();
             this.BtnFetchGameList = new System.Windows.Forms.Button();
             this.comboBoxGameList = new System.Windows.Forms.ComboBox();
@@ -36,12 +37,15 @@
             this.textBoxGameName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.BtnAddGame = new System.Windows.Forms.Button();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxLoading)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.PicBoxLoading);
             this.groupBox3.Controls.Add(this.BtnAddSteamGame);
             this.groupBox3.Controls.Add(this.BtnFetchGameList);
             this.groupBox3.Controls.Add(this.comboBoxGameList);
@@ -53,6 +57,19 @@
             this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Steam Game";
+            // 
+            // PicBoxLoading
+            // 
+            this.PicBoxLoading.BackColor = System.Drawing.Color.Transparent;
+            this.PicBoxLoading.Image = global::Gamemo.Properties.Resources.transparentLoading;
+            this.PicBoxLoading.Location = new System.Drawing.Point(337, 34);
+            this.PicBoxLoading.Name = "PicBoxLoading";
+            this.PicBoxLoading.Size = new System.Drawing.Size(32, 31);
+            this.PicBoxLoading.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PicBoxLoading.TabIndex = 12;
+            this.PicBoxLoading.TabStop = false;
+            this.PicBoxLoading.Visible = false;
+            this.PicBoxLoading.WaitOnLoad = true;
             // 
             // BtnAddSteamGame
             // 
@@ -77,6 +94,7 @@
             this.BtnFetchGameList.TabIndex = 10;
             this.BtnFetchGameList.Text = "Fetch Steam\'s Game List";
             this.BtnFetchGameList.UseVisualStyleBackColor = true;
+            this.BtnFetchGameList.Click += new System.EventHandler(this.BtnFetchGameList_Click);
             // 
             // comboBoxGameList
             // 
@@ -134,6 +152,11 @@
             this.BtnAddGame.UseVisualStyleBackColor = true;
             this.BtnAddGame.Click += new System.EventHandler(this.BtnAddGame_Click);
             // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            // 
             // FormAddNewGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -149,6 +172,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add New Game";
             this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PicBoxLoading)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -164,5 +188,7 @@
         private System.Windows.Forms.TextBox textBoxGameName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button BtnAddGame;
+        private System.Windows.Forms.PictureBox PicBoxLoading;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
