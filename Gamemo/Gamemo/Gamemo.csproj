@@ -71,6 +71,12 @@
     <Compile Include="FormAchievements.Designer.cs">
       <DependentUpon>FormAchievements.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAddNewGame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddNewGame.Designer.cs">
+      <DependentUpon>FormAddNewGame.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,9 @@
     <Compile Include="SteamManager.cs" />
     <EmbeddedResource Include="FormAchievements.resx">
       <DependentUpon>FormAchievements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddNewGame.resx">
+      <DependentUpon>FormAddNewGame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

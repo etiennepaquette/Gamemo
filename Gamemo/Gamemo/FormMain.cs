@@ -16,24 +16,11 @@ namespace Gamemo
     public partial class FormMain : Form
     {
         private string ProfileName;
-        List<Game> ownedGames;
+        private long ProfileSteamID;
 
         public FormMain() {
             InitializeComponent();
             LoadProfile();
-            LoadGameList();
-        }
-
-        public FormMain(string profileName, long steamID)
-        {
-            ProfileName = profileName;
-            InitializeComponent();
-            SteamManager.Init(steamID);
-            if (SteamManager.IsSteamProfile) {
-                btnFetchGameList.Enabled = true;
-                comboBoxGameList.Enabled = true;
-                BtnAddSteamGame.Enabled = true;
-            }
             LoadGameList();
         }
 
@@ -48,12 +35,7 @@ namespace Gamemo
             List<Profile> profiles = JsonConvert.DeserializeObject<List<Profile>>(File.ReadAllText(fileName));
             // TODO: Deal with multiple profiles
             ProfileName = profiles.First<Profile>().Name;
-            if (profiles.First<Profile>().SteamID != 0) {
-                SteamManager.Init(profiles.First<Profile>().SteamID);
-                btnFetchGameList.Enabled = true;
-                comboBoxGameList.Enabled = true;
-                BtnAddSteamGame.Enabled = true;
-            }
+            ProfileSteamID = profiles.First<Profile>().SteamID;
         }
 
         private void LoadGameList() {
@@ -73,16 +55,6 @@ namespace Gamemo
                 TxtBoxGameMemo.Enabled = false;
             }
             GameList.Save(ProfileName);
-        }
-
-        private void buttonAddGame_Click(object sender, EventArgs e)
-        {
-            if (textBoxGameName.Text != "") {
-                GameList.AddGame(textBoxGameName.Text);
-                textBoxGameName.Text = "";
-                UpdateGameList();
-                listBoxGames.SelectedIndex = listBoxGames.Items.Count - 1;
-            }
         }
 
         private void btnDeleteGame_Click(object sender, EventArgs e)
@@ -116,33 +88,18 @@ namespace Gamemo
             GameList.Save(ProfileName);
         }
 
-        private void btnFetchGameList_Click(object sender, EventArgs e)
-        {
-            ownedGames = SteamManager.GetOwnedGames();
-
-            comboBoxGameList.Items.Clear();
-            foreach (Game game in ownedGames) {
-                comboBoxGameList.Items.Add(game.Name);
-            }
-            comboBoxGameList.SelectedIndex = 0;
-        }
-
-        private void BtnAddSteamGame_Click(object sender, EventArgs e)
-        {
-            string gameName = comboBoxGameList.SelectedItem.ToString();
-            Game g = ownedGames.Find(x => x.Name == gameName);
-            if (g != null) {
-                GameList.AddSteamGame(g.AppID, g.Name);
-                UpdateGameList();
-                comboBoxGameList.SelectedIndex = -1;
-                listBoxGames.SelectedIndex = listBoxGames.Items.Count - 1;
-            }
-        }
-
         private void BtnGameAchievements_Click(object sender, EventArgs e)
         {
             FormAchievements f = new FormAchievements(listBoxGames.SelectedItem.ToString());
             f.ShowDialog();
+        }
+
+        private void ToolStripMenuItemAddNewGame_Click(object sender, EventArgs e)
+        {
+            FormAddNewGame f = new FormAddNewGame(ProfileSteamID);
+            f.ShowDialog();
+            UpdateGameList();
+            listBoxGames.SelectedIndex = listBoxGames.Items.Count - 1;
         }
     }
 }
