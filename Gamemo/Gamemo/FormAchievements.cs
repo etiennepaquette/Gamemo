@@ -75,5 +75,11 @@ namespace Gamemo
 
             }*/
         }
+
+        private void BtnStream_Click(object sender, EventArgs e)
+        {
+            FormStream f = new FormStream(achievementsList);
+            f.ShowDialog();
+        }
     }
 }

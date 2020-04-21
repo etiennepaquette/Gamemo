@@ -34,6 +34,7 @@
             this.labelAchievDesc = new System.Windows.Forms.Label();
             this.textBoxAchievMemo = new System.Windows.Forms.TextBox();
             this.BtnDeleteAchiev = new System.Windows.Forms.Button();
+            this.BtnStream = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -101,11 +102,22 @@
             this.BtnDeleteAchiev.UseVisualStyleBackColor = true;
             this.BtnDeleteAchiev.Click += new System.EventHandler(this.BtnDeleteAchieve_Click);
             // 
+            // BtnStream
+            // 
+            this.BtnStream.Location = new System.Drawing.Point(555, 27);
+            this.BtnStream.Name = "BtnStream";
+            this.BtnStream.Size = new System.Drawing.Size(111, 49);
+            this.BtnStream.TabIndex = 6;
+            this.BtnStream.Text = "Stream";
+            this.BtnStream.UseVisualStyleBackColor = true;
+            this.BtnStream.Click += new System.EventHandler(this.BtnStream_Click);
+            // 
             // FormAchievements
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(678, 348);
+            this.Controls.Add(this.BtnStream);
             this.Controls.Add(this.BtnDeleteAchiev);
             this.Controls.Add(this.textBoxAchievMemo);
             this.Controls.Add(this.labelAchievDesc);
@@ -113,7 +125,6 @@
             this.Controls.Add(this.labelAchievName);
             this.Controls.Add(this.listBoxAchievements);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.Name = "FormAchievements";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAchievements";
@@ -131,5 +142,6 @@
         private System.Windows.Forms.Label labelAchievDesc;
         private System.Windows.Forms.TextBox textBoxAchievMemo;
         private System.Windows.Forms.Button BtnDeleteAchiev;
+        private System.Windows.Forms.Button BtnStream;
     }
 }

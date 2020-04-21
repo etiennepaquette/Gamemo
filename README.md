@@ -2,6 +2,7 @@
 Application to save memo on games
 
 ## TODO
+- Delete confirmation
 - Possibility to add checklist as memo
 - Show number/pourcentage of achievements unlocked
 - Game status (In progress, Story Completed, 100% Completed, Planned, Abandoned)
@@ -10,5 +11,5 @@ Application to save memo on games
 - Be able to add url (to guide's/walkthrough)
 - Can change/delete profile
 - Get profile's name and profile's picture from Steam
-- Sort Achievements by GlobalPercent, Name, Default
+- Sort Achievements by GlobalPercent(Now by default, desc.), Name, Default
 - Sort Games by Name, SteamGame, Platform

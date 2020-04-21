@@ -36,8 +36,8 @@
     <ApplicationIcon>Gamemo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="Fluxter.SteamWebAPI, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SteamWebAPI.2.0.1\lib\netstandard2.0\Fluxter.SteamWebAPI.dll</HintPath>
@@ -46,10 +46,13 @@
       <HintPath>..\packages\HtmlAgilityPack.1.11.4\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Steam.Models, Version=3.0.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Steam.Models.3.0.8\lib\netstandard2.0\Steam.Models.dll</HintPath>
+    <Reference Include="Steam.Models, Version=3.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SteamWebAPI2.4.1.1\lib\netstandard2.0\Steam.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="SteamWebAPI2, Version=4.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SteamWebAPI2.4.1.1\lib\netstandard2.0\SteamWebAPI2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -89,6 +92,12 @@
     <Compile Include="FormProfile.Designer.cs">
       <DependentUpon>FormProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormStream.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStream.Designer.cs">
+      <DependentUpon>FormStream.cs</DependentUpon>
+    </Compile>
     <Compile Include="Game.cs" />
     <Compile Include="GameList.cs" />
     <Compile Include="Profile.cs" />
@@ -111,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProfile.resx">
       <DependentUpon>FormProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStream.resx">
+      <DependentUpon>FormStream.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

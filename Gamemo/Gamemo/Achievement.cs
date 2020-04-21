@@ -9,6 +9,7 @@ namespace Gamemo
     public class Achievement
     {
         public string Icon { get; set; }
+        public string IconGray { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Memo { get; set; }
@@ -16,8 +17,9 @@ namespace Gamemo
 
         public Achievement() { }
 
-        public Achievement(string icon, string name, string description, float globalPerc) {
+        public Achievement(string icon, string iconGray, string name, string description, float globalPerc) {
             Icon = icon;
+            IconGray = iconGray;
             Name = name;
             Description = description;
             GlobalPercentage = globalPerc;

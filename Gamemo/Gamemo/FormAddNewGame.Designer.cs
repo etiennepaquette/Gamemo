@@ -82,6 +82,7 @@
             this.BtnAddSteamGame.TabIndex = 11;
             this.BtnAddSteamGame.Text = "Add Steam Game";
             this.BtnAddSteamGame.UseVisualStyleBackColor = true;
+            this.BtnAddSteamGame.Click += new System.EventHandler(this.BtnAddSteamGame_Click);
             // 
             // BtnFetchGameList
             // 
