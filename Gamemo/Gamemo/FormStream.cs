@@ -12,12 +12,10 @@ namespace Gamemo
 {
     public partial class FormStream : Form
     {
-        private const int ImageSize = 32;
+        private const int ImageSize = 64;
         private const int ImageByRow = 32;
         private const int TopOffset = 20;
         private List<Achievement> AchievementsList;
-        private Label DescriptionLabel;
-        private Label DescriptionLabelShadow;
 
         public FormStream() { }
 
@@ -25,7 +23,6 @@ namespace Gamemo
         {
             AchievementsList = achievementsList;
             InitializeComponent();
-            CreateDescriptionLabel();
             CreatePictureBoxes();
         }
 
@@ -33,44 +30,25 @@ namespace Gamemo
         {
             var size = new Size(ImageSize, ImageSize);
             int i = 0;
+
             foreach (var ach in AchievementsList) {
                 var pictureBox = new PictureBox();
                 pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                 pictureBox.Size = size;
                 pictureBox.Location = new Point((i % ImageByRow) * ImageSize, 
                                                 (i / ImageByRow) * ImageSize + TopOffset);
-                pictureBox.ImageLocation = ach.IconGray;
+                pictureBox.ImageLocation = ach.Achieved ? ach.Icon : ach.IconGray;
                 pictureBox.Name = ach.Icon; // Name used to store the completed icon image
                 pictureBox.Tag = ach;
                 pictureBox.Click += new EventHandler(pictureBox_Click);
                 pictureBox.MouseHover += new EventHandler(pictureBox_MouseHover);
+                pictureBox.MouseLeave += new EventHandler(pictureBox_MouseLeave);
                 this.Controls.Add(pictureBox);
                 i++;
             }
+
             int nbRows = (int)Math.Ceiling(AchievementsList.Count / (double)ImageByRow);
-            this.Size = new Size(ImageSize * ImageByRow, ImageSize * nbRows + TopOffset);
-        }
-
-        private void CreateDescriptionLabel()
-        {
-            DescriptionLabelShadow = new Label();
-            DescriptionLabelShadow.Size = new Size(ImageSize * ImageByRow, 35);
-            DescriptionLabelShadow.Font = new Font("Calibri", 16);
-            DescriptionLabelShadow.BackColor = Color.Black;
-            DescriptionLabelShadow.BorderStyle = BorderStyle.FixedSingle;
-            DescriptionLabelShadow.Location = new Point(
-                AchievementsList.Count % ImageByRow * ImageSize + 4, 
-                ImageSize * (int)Math.Ceiling(AchievementsList.Count / (double)ImageByRow) - 7);
-
-            DescriptionLabel = new Label();
-            DescriptionLabel.Size = DescriptionLabelShadow.Size;
-            DescriptionLabel.Font = DescriptionLabelShadow.Font;
-            DescriptionLabel.ForeColor = Color.Red;
-            DescriptionLabel.BorderStyle = BorderStyle.FixedSingle;
-            DescriptionLabel.Location = new Point(DescriptionLabelShadow.Location.X - 4, DescriptionLabelShadow.Location.Y - 4);
-
-            this.Controls.Add(DescriptionLabel);
-            this.Controls.Add(DescriptionLabelShadow);
+            this.Size = new Size(ImageSize * ImageByRow + 500, ImageSize * nbRows + TopOffset + 200);
         }
 
         // Events
@@ -86,8 +64,36 @@ namespace Gamemo
         {
             var pBox = (PictureBox)sender;
             var achievement = (Achievement)pBox.Tag;
+            var toolTipText = $"[{achievement.GlobalPercentage}%] {achievement.Name}";
 
-            DescriptionLabel.Text = $"[{achievement.GlobalPercentage}%] {achievement.Name}: {achievement.Description}";
+            if (achievement.Description.Length > 0)
+            {
+                toolTipText += $": { achievement.Description} ";
+            }
+
+            ToolTipDescription.Text = toolTipText;
+
+            ToolTipMiddle.Size = new Size((int)(toolTipText.Length * ToolTipDescription.Font.Size * 3 / 5), ToolTipMiddle.Size.Height);
+
+            var toolTipLocation = new Point(pBox.Location.X + (ImageSize * 3 / 4), pBox.Location.Y + (ImageSize - 10));
+
+            // Outside of bounds
+            if (toolTipLocation.X + ToolTipEdgeLeft.Width + ToolTipMiddle.Width + ToolTipEdgeRight.Width > this.Width)
+            {
+                toolTipLocation.X = pBox.Location.X - ToolTipMiddle.Width;
+            }
+
+            ToolTipMiddle.Location = toolTipLocation;
+            ToolTipEdgeRight.Location = new Point(ToolTipMiddle.Location.X + ToolTipMiddle.Size.Width - 10, ToolTipMiddle.Location.Y);
+            ToolTipMiddle.Visible = true;
+            ToolTipEdgeRight.BringToFront();
+            ToolTipEdgeRight.Visible = true;
+        }
+
+        private void pictureBox_MouseLeave(object sender, System.EventArgs e)
+        {
+            ToolTipMiddle.Visible = false;
+            ToolTipEdgeRight.Visible = false;
         }
 
 
@@ -119,6 +125,13 @@ namespace Gamemo
         private void panel1_MouseUp(object sender, MouseEventArgs e)
         {
             mouseDown = false;
+        }
+
+        private void FormStream_Load(object sender, EventArgs e)
+        {
+            ToolTipDescription.Parent = ToolTipMiddle;
+            ToolTipEdgeLeft.Parent = ToolTipMiddle;
+            ToolTipDescription.BackColor = Color.Transparent;
         }
     }
 }

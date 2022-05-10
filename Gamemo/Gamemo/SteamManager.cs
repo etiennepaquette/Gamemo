@@ -105,12 +105,12 @@ namespace Gamemo
 
             List<Achievement> achievementList = new List<Achievement>();
             foreach (var ach in achievements) {
-                if (ach.achieved == 0) {
+                //if (ach.achieved == 0) {
                     var gameAchievement = gameAchievements.Find(x => x.displayname == ach.name);
-                    achievementList.Add(new Achievement(gameAchievement.icon, gameAchievement.icongray, ach.name, ach.description, globalAchievePerc[ach.name]));
-                }
+                    achievementList.Add(new Achievement(gameAchievement.icon, gameAchievement.icongray, ach.name, ach.description, globalAchievePerc[ach.name], ach.achieved == 1));
+                //}
             }
-            return achievementList.OrderByDescending(x => x.GlobalPercentage).ToList();
+            return achievementList;//.OrderByDescending(x => x.GlobalPercentage).ToList();
         }
         /*
         private static List<Achievement> GetAchieveByHTML(int appID, Dictionary<string, float> globalAchievePerc) {

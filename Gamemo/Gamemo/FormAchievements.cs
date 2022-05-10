@@ -25,10 +25,15 @@ namespace Gamemo
 
         private void ShowAchievList() {
             listBoxAchievements.Items.Clear();
-            foreach (Achievement a in achievementsList) {
-                listBoxAchievements.Items.Add(a.Name);
-                if (a.Memo != null && a.Memo != "") {
-                    
+            foreach (Achievement a in achievementsList) 
+            {
+                if (!a.Achieved)
+                {
+                    listBoxAchievements.Items.Add(a.Name);
+                    if (a.Memo != null && a.Memo != "")
+                    {
+
+                    }
                 }
             }
             listBoxAchievements.SelectedIndex = 0;
