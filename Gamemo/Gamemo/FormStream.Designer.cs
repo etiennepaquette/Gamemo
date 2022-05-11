@@ -35,11 +35,16 @@
             this.ToolTipEdgeLeft = new System.Windows.Forms.PictureBox();
             this.ToolTipMiddle = new System.Windows.Forms.PictureBox();
             this.ToolTipEdgeRight = new System.Windows.Forms.PictureBox();
+            this.AchievementLabel = new System.Windows.Forms.Label();
+            this.ProgressBar = new System.Windows.Forms.PictureBox();
+            this.ProgressBarFilling = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ToolTipBG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ToolTipEdgeLeft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ToolTipMiddle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ToolTipEdgeRight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProgressBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProgressBarFilling)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -119,18 +124,52 @@
             this.ToolTipEdgeRight.TabStop = false;
             this.ToolTipEdgeRight.Visible = false;
             // 
+            // AchievementLabel
+            // 
+            this.AchievementLabel.AutoSize = true;
+            this.AchievementLabel.Font = new System.Drawing.Font("BIZ UDPGothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.AchievementLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.AchievementLabel.Location = new System.Drawing.Point(12, 96);
+            this.AchievementLabel.Name = "AchievementLabel";
+            this.AchievementLabel.Size = new System.Drawing.Size(308, 22);
+            this.AchievementLabel.TabIndex = 7;
+            this.AchievementLabel.Text = "Achievement Progress : ";
+            // 
+            // ProgressBar
+            // 
+            this.ProgressBar.BackColor = System.Drawing.Color.Transparent;
+            this.ProgressBar.Image = ((System.Drawing.Image)(resources.GetObject("ProgressBar.Image")));
+            this.ProgressBar.Location = new System.Drawing.Point(400, 96);
+            this.ProgressBar.Name = "ProgressBar";
+            this.ProgressBar.Size = new System.Drawing.Size(504, 22);
+            this.ProgressBar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ProgressBar.TabIndex = 8;
+            this.ProgressBar.TabStop = false;
+            // 
+            // ProgressBarFilling
+            // 
+            this.ProgressBarFilling.BackColor = System.Drawing.Color.Crimson;
+            this.ProgressBarFilling.Location = new System.Drawing.Point(402, 98);
+            this.ProgressBarFilling.Name = "ProgressBarFilling";
+            this.ProgressBarFilling.Size = new System.Drawing.Size(500, 18);
+            this.ProgressBarFilling.TabIndex = 9;
+            this.ProgressBarFilling.TabStop = false;
+            // 
             // FormStream
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lime;
-            this.ClientSize = new System.Drawing.Size(520, 525);
+            this.ClientSize = new System.Drawing.Size(993, 525);
             this.Controls.Add(this.ToolTipDescription);
             this.Controls.Add(this.ToolTipEdgeRight);
             this.Controls.Add(this.ToolTipEdgeLeft);
             this.Controls.Add(this.ToolTipMiddle);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.ToolTipBG);
+            this.Controls.Add(this.ProgressBarFilling);
+            this.Controls.Add(this.ProgressBar);
+            this.Controls.Add(this.AchievementLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -144,6 +183,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ToolTipEdgeLeft)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ToolTipMiddle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ToolTipEdgeRight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProgressBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProgressBarFilling)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -158,5 +199,8 @@
         private System.Windows.Forms.PictureBox ToolTipMiddle;
         private System.Windows.Forms.PictureBox ToolTipEdgeRight;
         private System.Windows.Forms.PictureBox ToolTipEdgeLeft;
+        private System.Windows.Forms.Label AchievementLabel;
+        private System.Windows.Forms.PictureBox ProgressBar;
+        private System.Windows.Forms.PictureBox ProgressBarFilling;
     }
 }

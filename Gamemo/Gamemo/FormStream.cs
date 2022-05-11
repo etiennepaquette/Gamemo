@@ -15,15 +15,20 @@ namespace Gamemo
         private const int ImageSize = 64;
         private const int ImageByRow = 32;
         private const int TopOffset = 20;
+        private const int PROGRESS_BAR_MAX_SIZE = 500;
         private List<Achievement> AchievementsList;
+        private int NbAchieved = 0;
 
         public FormStream() { }
 
         public FormStream(List<Achievement> achievementsList)
         {
             AchievementsList = achievementsList;
+            NbAchieved = achievementsList.Where(x => x.Achieved).Count();
+
             InitializeComponent();
             CreatePictureBoxes();
+            UpdateAchievementsProgress();
         }
 
         private void CreatePictureBoxes()
@@ -57,7 +62,24 @@ namespace Gamemo
             var pBox = (PictureBox)sender;
             var achievement = (Achievement)pBox.Tag;
 
-            pBox.ImageLocation = pBox.ImageLocation == achievement.Icon ? achievement.IconGray : achievement.Icon;
+            if (pBox.ImageLocation == achievement.Icon)
+            {
+                pBox.ImageLocation = achievement.IconGray;
+                NbAchieved--;
+            }
+            else
+            {
+                pBox.ImageLocation = achievement.Icon;
+                NbAchieved++;
+            }
+
+            UpdateAchievementsProgress();
+        }
+
+        private void UpdateAchievementsProgress()
+        {
+            AchievementLabel.Text = $"Achievement Progress : {NbAchieved:0#}/{AchievementsList.Count()}";
+            ProgressBarFilling.Size = new Size(NbAchieved * PROGRESS_BAR_MAX_SIZE / AchievementsList.Count(), ProgressBarFilling.Size.Height);
         }
 
         private void pictureBox_MouseHover(object sender, System.EventArgs e)
